@@ -1,0 +1,1 @@
+audio books by rowling or dan brown between 2000 and 2005	( filter ( select book ) ( _and ( _or ( _eq author authorid0 ) ( _eq author authorid1 ) ) ( _and ( _eq type typeid0 ) ( _eq periodid0 periodid1 ) ) ) )
