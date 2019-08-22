@@ -28,7 +28,7 @@ python -u exp.py \
     --seed ${seed} \
     --mode train \
     --batch_size ${batch_size} \
-    --asdl_file asdl/lang/prolog/prolog_asdl.txt \
+    --asdl_file asdl/lang/prolog/lisp_asdl.txt \
     --transition_system prolog \
     --train_file ${train_file} \
     --vocab ${vocab} \
