@@ -68,7 +68,7 @@ def prepare_dataset():
 
     train_set = load_dataset(transition_system, 'data/libro/train.txt')
     test_set = load_dataset(transition_system, 'data/libro/test.txt')
-
+    dev_set = load_dataset(transition_system,'data/libro/dev.txt')
     # generate vocabulary
     src_vocab = VocabEntry.from_corpus([e.src_sent for e in train_set], size=5000, freq_cutoff=vocab_freq_cutoff)
 
@@ -93,7 +93,7 @@ def prepare_dataset():
     pickle.dump(train_set, open('data/libro/train.bin', 'wb'))
     pickle.dump(test_set, open('data/libro/test.bin', 'wb'))
     pickle.dump(vocab, open('data/libro/vocab.freq2.bin', 'wb'))
-
+    pickle.dump(dev_set,open('data/libro/dev.bin', 'wb'))
 
 if __name__ == '__main__':
     prepare_dataset()
