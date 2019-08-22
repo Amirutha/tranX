@@ -16,10 +16,13 @@ import numpy as np
 def load_dataset(transition_system, dataset_file):
     examples = []
     for idx, line in enumerate(open(dataset_file)):
-        src_query, tgt_code = line.strip().split('\t')
+        print(line)
+        src_query, tgt_code = line.strip().split('~')
 
+        tgt_code = tgt_code.replace("("," ( ")
+        tgt_code = tgt_code.replace(")"," ) ")
+        tgt_code = " ".join(tgt_code.split())
         src_query_tokens = src_query.split(' ')
-        src_query = " ".join(src_query_tokens)
 
         tgt_ast = lisp_expr_to_ast(transition_system.grammar, tgt_code)
         reconstructed_lisp_expr = ast_to_lisp_expr(tgt_ast)
