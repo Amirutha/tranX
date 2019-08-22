@@ -144,5 +144,8 @@ class TransitionSystem(object):
         elif lang == 'wikisql':
             from .lang.sql.sql_transition_system import SqlTransitionSystem
             return SqlTransitionSystem
+        elif lang == 'lisp':
+            from .lang.lisp.lisp_transition_system import LispTransitionSystem
+            return LispTransitionSystem
 
         raise ValueError('unknown language %s' % lang)
