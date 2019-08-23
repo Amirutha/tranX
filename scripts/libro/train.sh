@@ -18,7 +18,7 @@ type_embed_size=32
 lr_decay=0.985
 lr_decay_after_epoch=20
 max_epoch=200
-patience=1000   # disable patience since we don't have dev set
+patience=10   # disable patience since we don't have dev set
 beam_size=5
 batch_size=10
 lr=0.0025
@@ -62,4 +62,6 @@ python -u exp.py \
     --save_all_models \
     --save_to saved_models/libro/${model_name} 2>logs/libro/${model_name}.log
 
+cp saved_models/libro/${model_name}.bin data/pretrained_models/libro-${version}
 . scripts/libro/test.sh saved_models/libro/${model_name}.bin 2>>logs/libro/${model_name}.log
+

@@ -22,6 +22,8 @@ def load_dataset(transition_system, dataset_file):
         tgt_code = tgt_code.replace("("," ( ")
         tgt_code = tgt_code.replace(")"," ) ")
         tgt_code = " ".join(tgt_code.split())
+        src_query = src_query.replace("(","")
+        src_query = src_query.replace(")","")
         src_query_tokens = src_query.split(' ')
 
         tgt_ast = lisp_expr_to_ast(transition_system.grammar, tgt_code)
