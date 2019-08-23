@@ -27,7 +27,6 @@ lstm='lstm'
 model_name=model.libro.sup.${lstm}.hid${hidden_size}.embed${embed_size}.act${action_embed_size}.field${field_embed_size}.type${type_embed_size}.drop${dropout}.lr_decay${lr_decay}.lr_dec_aft${lr_decay_after_epoch}.beam${beam_size}.$(basename ${vocab}).$(basename ${train_file}).pat${patience}.max_ep${max_epoch}.batch${batch_size}.lr${lr}.glorot.no_par_info.no_copy.ls${ls}.seed${seed}.version${version}
 
 python -u exp.py \
-    --cuda \
     --seed ${seed} \
     --mode train \
     --batch_size ${batch_size} \
