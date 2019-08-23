@@ -6,6 +6,8 @@ source activate py3torch3cuda9
 seed=${1:-0}
 vocab="data/libro/vocab.freq2.bin"
 train_file="data/libro/train.bin"
+dev_file="data/libro/dev.bin"
+test_file="data/libro/test.bin"
 dropout=0.5
 hidden_size=256
 embed_size=128
@@ -31,6 +33,8 @@ python -u exp.py \
     --asdl_file asdl/lang/prolog/lisp_asdl.txt \
     --transition_system prolog \
     --train_file ${train_file} \
+    --dev_file ${dev_file}\
+    --test_file ${test_file}\
     --vocab ${vocab} \
     --lstm ${lstm} \
     --primitive_token_label_smoothing ${ls} \

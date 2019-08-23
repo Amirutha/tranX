@@ -16,7 +16,7 @@ from common.registerable import Registrable
 def lisp_node_to_ast(grammar, lisp_tokens, start_idx):
     node_name = lisp_tokens[start_idx]
     i = start_idx
-    if node_name in ['_eq','select','filter','_parts','_time','_inspect','between','_and','_or']:
+    if node_name in ['_eq','select','filter','_parts','_time','_inspect','between','_and','_or','renew','cancel']:
         # it's a predicate
         prod = grammar.get_prod_by_ctr_name('apply')
         pred_field = RealizedField(prod['predicate'], value=node_name)

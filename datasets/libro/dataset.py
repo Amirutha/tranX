@@ -68,6 +68,7 @@ def prepare_dataset():
 
     train_set = load_dataset(transition_system, 'data/libro/train.txt')
     test_set = load_dataset(transition_system, 'data/libro/test.txt')
+    dev_set = load_dataset(transition_system, 'data/libro/dev.txt')
     # generate vocabulary
     src_vocab = VocabEntry.from_corpus([e.src_sent for e in train_set], size=5000, freq_cutoff=vocab_freq_cutoff)
 
@@ -84,13 +85,14 @@ def prepare_dataset():
     vocab = Vocab(source=src_vocab, primitive=primitive_vocab, code=code_vocab)
     print('generated vocabulary %s' % repr(vocab), file=sys.stderr)
 
-    action_len = [len(e.tgt_actions) for e in chain(train_set, test_set)]
+    action_len = [len(e.tgt_actions) for e in chain(train_set, test_set,dev_set)]
     print('Max action len: %d' % max(action_len), file=sys.stderr)
     print('Avg action len: %d' % np.average(action_len), file=sys.stderr)
     print('Actions larger than 100: %d' % len(list(filter(lambda x: x > 100, action_len))), file=sys.stderr)
 
     pickle.dump(train_set, open('data/libro/train.bin', 'wb'))
     pickle.dump(test_set, open('data/libro/test.bin', 'wb'))
+    pickle.dump(test_set, open('data/libro/dev.bin', 'wb'))
     pickle.dump(vocab, open('data/libro/vocab.freq2.bin', 'wb'))
 
 if __name__ == '__main__':

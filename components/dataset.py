@@ -46,6 +46,7 @@ class Dataset(object):
 
             yield batch_examples
 
+
     def __len__(self):
         return len(self.examples)
 
