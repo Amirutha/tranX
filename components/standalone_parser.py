@@ -6,13 +6,14 @@ import torch
 from model import parser
 
 from common.registerable import Registrable
-
+#
 from datasets.geo.example_processor import GeoQueryExampleProcessor
-from datasets.atis.example_processor import ATISExampleProcessor
-from datasets.django.example_processor import DjangoExampleProcessor
+# from datasets.atis.example_processor import ATISExampleProcessor
+# from datasets.django.example_processor import DjangoExampleProcessor
+from datasets.libro.example_processor import LibroExampleProcessor
 
 if six.PY3:
-    from datasets.conala.example_processor import ConalaExampleProcessor
+     from datasets.conala.example_processor import ConalaExampleProcessor
 
 
 class StandaloneParser(object):

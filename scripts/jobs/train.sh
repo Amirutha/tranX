@@ -1,14 +1,11 @@
 #!/bin/bash
 set -e
 
-#source activate py3torch3cuda9
+source activate py3torch3cuda9
 
 seed=${1:-0}
-version=${2:-0}
-vocab="data/libro/vocab.freq2.bin"
-train_file="data/libro/train.bin"
-dev_file="data/libro/dev.bin"
-test_file="data/libro/test.bin"
+vocab="data/jobs/vocab.freq2.bin"
+train_file="data/jobs/train.bin"
 dropout=0.5
 hidden_size=256
 embed_size=128
@@ -24,18 +21,16 @@ batch_size=10
 lr=0.0025
 ls=0.1
 lstm='lstm'
-model_name=model.libro.sup.${lstm}.hid${hidden_size}.embed${embed_size}.act${action_embed_size}.field${field_embed_size}.type${type_embed_size}.drop${dropout}.lr_decay${lr_decay}.lr_dec_aft${lr_decay_after_epoch}.beam${beam_size}.$(basename ${vocab}).$(basename ${train_file}).pat${patience}.max_ep${max_epoch}.batch${batch_size}.lr${lr}.glorot.no_par_info.no_copy.ls${ls}.seed${seed}.version${version}
+model_name=model.jobs.sup.${lstm}.hid${hidden_size}.embed${embed_size}.act${action_embed_size}.field${field_embed_size}.type${type_embed_size}.drop${dropout}.lr_decay${lr_decay}.lr_dec_aft${lr_decay_after_epoch}.beam${beam_size}.$(basename ${vocab}).$(basename ${train_file}).pat${patience}.max_ep${max_epoch}.batch${batch_size}.lr${lr}.glorot.no_par_info.no_copy.ls${ls}.seed${seed}
 
 python -u exp.py \
     --cuda \
     --seed ${seed} \
     --mode train \
     --batch_size ${batch_size} \
-    --asdl_file asdl/lang/lisp/lisp_asdl.txt \
-    --transition_system lisp \
+    --asdl_file asdl/lang/prolog/prolog_asdl.txt \
+    --transition_system prolog \
     --train_file ${train_file} \
-    --dev_file ${dev_file}\
-    --test_file ${test_file}\
     --vocab ${vocab} \
     --lstm ${lstm} \
     --primitive_token_label_smoothing ${ls} \
@@ -61,6 +56,6 @@ python -u exp.py \
     --decode_max_time_step 55 \
     --log_every 50 \
     --save_all_models \
-    --save_to saved_models/libro/${model_name} 2>logs/libro/${model_name}.log
+    --save_to saved_models/jobs/${model_name} 2>logs/jobs/${model_name}.log
 
-. scripts/libro/test.sh saved_models/libro/${model_name}.bin 2>>logs/libro/${model_name}.log
+. scripts/jobs/test.sh saved_models/jobs/${model_name}.bin 2>>logs/jobs/${model_name}.log

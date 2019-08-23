@@ -9,6 +9,7 @@ except:
 from collections import Iterable
 from asdl.asdl import *
 from asdl.asdl_ast import RealizedField, AbstractSyntaxTree
+import ast
 
 from common.registerable import Registrable
 
@@ -184,6 +185,9 @@ class LispTransitionSystem(TransitionSystem):
             return [GenTokenAction(realized_field.value)]
         else:
             return []
+
+    def is_valid_hypothesis(self, hyp, **kwargs):
+        return True
 
 
 if __name__ == '__main__':
